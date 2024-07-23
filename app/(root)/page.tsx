@@ -3,9 +3,10 @@
 import ToolBalanceBox from '@/components/ToolBalanceBox';
 import HeaderBox from '@/components/HeaderBox';
 import React from 'react';
+import RightSidebar from '@/components/RightSidebar';
 
 const Home = () => {
-    const loggedIn ={firstName : 'Gowtham '};
+    const loggedIn ={firstName : 'Gowtham' ,lastName :"Sree", email :'gowthamt3060@gmail.com'};
 
   return (
     <section className='home'>
@@ -25,7 +26,13 @@ const Home = () => {
           
 
        </header>
+       RECENT TRANSCITIONS
        </div>
+       <RightSidebar user={loggedIn} 
+       transactions={[]}
+       banks={[{currentBalance :1250.00},{currentBalance:2340.00}]}
+       />
+
     </section>
   );
 };

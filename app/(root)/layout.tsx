@@ -21,7 +21,6 @@ export default function RootLayout({
         />
         <div>
           <MobileNav user={loggedIN} />
-
         </div>
       </div>
       {children}
