@@ -8,25 +8,26 @@ import {
     FormMessage,
   } from "@/components/ui/form"
   import { Input } from "@/components/ui/input"
-  import { Control, Form } from "react-hook-form"
+  import { Control, FieldPath, Form } from "react-hook-form"
   import { z } from "zod"
   import { authFormSchema } from '@/lib/utils'
 
  
+  const formSchema = authFormSchema('sign-up')
 
   interface CustomInput {
-    control : Control<z.infer<typeof authFormSchema>>
-    name: string,
-    label : String,
-    placeholder : String
+    control: Control<z.infer<typeof formSchema>>,
+    name: FieldPath<z.infer<typeof formSchema>>,
+    label: string,
+    placeholder: string
   }
+  
 
-
-const CustomInput = ({control , name , label , placeholder}) => {
+const CustomInput = ({control , name , label , placeholder }: CustomInput) => {
   return (
     <FormField
     control={control}
-    name="password"
+    name={name}
     render={({ field }) => (
       <FormItem>
         <FormLabel htmlFor="email">
@@ -34,10 +35,9 @@ const CustomInput = ({control , name , label , placeholder}) => {
         </FormLabel>
         <FormControl>
           <Input 
-            id="email"
             placeholder={placeholder}
             className='input-class'
-            type="password"
+            type={name==='password' ? 'password': 'text'}
             {...field} // spread field props here
           />
         </FormControl>
